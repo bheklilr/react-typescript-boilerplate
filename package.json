@@ -10,22 +10,17 @@
   "scripts": {
     "presetup": "npm i chalk shelljs",
     "setup": "node ./internals/scripts/setup.js",
-
     "start": "cross-env NODE_ENV=development node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env NODE_ENV=production node server",
-
     "prebuild": "npm run build:clean",
     "build:clean": "rimraf ./build",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color p --progress --hide-modules --display-optimization-bailout",
-
     "gen": "plop --plopfile internals/generators/index.js",
-
     "lint": "npm run lint:ts",
     "lint:ts": "npm run lint:eslint -- . ",
     "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern internals/scripts",
-    "lint:staged": "lint-staged",
-
+    "lint:staged": "npm run lint",
     "pretest": "npm run test:clean && npm run lint",
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
@@ -91,7 +86,9 @@
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
     "eslint": "^4.19.1",
+    "eslint-config-react-app": "^2.1.0",
     "eslint-import-resolver-webpack": "^0.10.0",
+    "eslint-plugin-flowtype": "^2.46.3",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.2",
@@ -158,6 +155,9 @@
           "config": "./internals/webpack/webpack.prod.babel.js"
         }
       }
+    },
+    "rules": {
+      "jsx-a11y/href-no-hash": 0
     }
   },
   "jest": {
