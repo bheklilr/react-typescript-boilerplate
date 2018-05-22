@@ -1,0 +1,156 @@
+{
+  "name": "react-typescript-boilerplate",
+  "version": "1.0.0",
+  "description": "A boilerplate project for setting up a React app with Typescript integration",
+  "main": "src/app/index.tsx",
+  "repository": "https://github.com/bheklilr/react-typescript-boilerplate",
+  "author": "Aaron Stevens <bheklilr2@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "compression": "^1.7.2",
+    "cross-env": "^5.1.5",
+    "express": "^4.16.3",
+    "fontfaceobserver": "^2.0.13",
+    "history": "^4.7.2",
+    "hoist-non-react-statics": "^2.5.0",
+    "immutable": "^3.8.2",
+    "intl": "^1.2.5",
+    "invariant": "^2.2.4",
+    "ip": "^1.1.5",
+    "lodash": "^4.17.10",
+    "minimist": "^1.2.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-intl": "^2.4.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
+    "redux": "^4.0.0",
+    "redux-immutable": "^4.0.0",
+    "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1",
+    "sanitize.css": "^5.0.0",
+    "styled-components": "^3.2.6",
+    "warning": "^3.0.0",
+    "whatwg-fetch": "^2.0.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "@types/node": "^10.1.2",
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5",
+    "add-asset-html-webpack-plugin": "^2.1.3",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
+    "babel-plugin-react-intl": "^2.4.0",
+    "babel-plugin-react-transform": "^3.0.0",
+    "babel-plugin-styled-components": "^1.5.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-react-constant-elements": "^6.23.0",
+    "babel-plugin-transform-react-inline-elements": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "circular-dependency-plugin": "^5.0.2",
+    "coveralls": "^3.0.1",
+    "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "eslint": "^4.19.1",
+    "eslint-import-resolver-webpack": "^0.10.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-redux-saga": "^0.8.0",
+    "eslint-plugin-typescript": "^0.12.0",
+    "eventsource-polyfill": "^0.9.6",
+    "exports-loader": "^0.7.0",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "image-webpack-loader": "^4.2.0",
+    "imports-loader": "^0.8.0",
+    "jest": "^22.4.4",
+    "jest-cli": "^22.4.4",
+    "lint-staged": "^7.1.2",
+    "node-plop": "^0.13.0",
+    "null-loader": "^0.1.1",
+    "offline-plugin": "^5.0.3",
+    "plop": "^2.0.0",
+    "pre-commit": "^1.2.2",
+    "react-test-renderer": "^16.3.2",
+    "rimraf": "^2.6.2",
+    "shelljs": "^0.8.2",
+    "style-loader": "^0.21.0",
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3",
+    "typescript-eslint-parser": "^15.0.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.8.3",
+    "webpack-dev-middleware": "^3.1.3",
+    "webpack-hot-middleware": "^2.22.2"
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "parser": "typescript-eslint-parser",
+    "env": {
+      "browser": true,
+      "node": true,
+      "jest": true,
+      "es6": true
+    },
+    "plugins": [
+      "typescript",
+      "redux-saga",
+      "react",
+      "jsx-a11y"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "settings": {
+      "import/resolver": {
+        "webpack": {
+          "config": "./internals/webpack/webpack.prod.babel.js"
+        }
+      }
+    }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.test.{js,jsx,ts,tsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 98,
+        "branches": 91,
+        "functions": 98,
+        "lines": 98
+      }
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "moduleNameMapper": {
+      ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/internals/mocks/cssModule.js",
+      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|tff|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/image.js"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/internals/testing/test-bundler.js",
+    "testRegex": "tests/.*\\.test.js$"
+  }
+}
