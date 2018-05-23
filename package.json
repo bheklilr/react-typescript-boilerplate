@@ -18,9 +18,10 @@
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "gen": "plop --plopfile internals/generators/index.js",
     "lint": "npm run lint:ts",
-    "lint:ts": "npm run lint:eslint -- . ",
+    "lint:ts": "tslint -c tslint.json -p tsconfig.json 'src/**/*.ts' 'src/**/*.tsx'",
     "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern internals/scripts",
     "lint:staged": "npm run lint",
+    "lint:ts:fix": "tslint -c tslint.json -p tsconfig.json --fix 'src/**/*.ts' 'src/**/*.tsx'",
     "pretest": "npm run test:clean && npm run lint",
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
@@ -32,7 +33,8 @@
     "configs:babel:prod": "node ./internals/scripts/configs.js babel:prod"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "lint:eslint"
+    "*.{ts,tsx}": "lint:tslint",
+    "*.{js,jsx}": "lint:eslint"
   },
   "pre-commit": "lint:staged",
   "dependencies": {
@@ -61,6 +63,7 @@
     "reselect": "^3.0.1",
     "sanitize.css": "^5.0.0",
     "styled-components": "^3.2.6",
+    "tslint-react": "^3.6.0",
     "warning": "^3.0.0",
     "whatwg-fetch": "^2.0.4"
   },

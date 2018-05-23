@@ -1,5 +1,4 @@
 {
-    "compileOnSave": true,
     "compilerOptions": {
         "baseUrl": "./src",
         "outDir": "./build/dist",
@@ -19,6 +18,9 @@
         "strictNullChecks": true,
         "suppressImplicitAnyIndexErrors": true
     },
+    "include": [
+        "./src"
+    ],
     "exclude": [
         "node_modules",
         "node_modules.bak",
