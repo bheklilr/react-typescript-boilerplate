@@ -1,70 +1,31 @@
-const componentExists = require('../utils/componentExists');
-const directories = require('../utils/directories');
+const { mkAdd, componentType, componentName, confirm, deny } = require('../utils/prompts');
 
 module.exports = (config) => {
     return {
         description: 'Add a container component',
         prompts: [
-            {
-                type: 'list',
-                name: 'type',
-                message: 'Select the base component type:',
-                default: 'Stateless Function',
-                choices: () => ['Stateless Function', 'React.PureComponent', 'React.Component'],
-            },
-            {
-                type: 'input',
-                name: 'name',
-                message: 'What should it be called?',
-                validate: (value) => {
-                    if ((/.+/).test(value)) {
-                        return componentExists(config, value)
-                            ? 'A component or container with this name already exists'
-                            : true;
-                    }
-                    return 'The name is required';
-                }
-            },
-            {
-                type: 'confirm',
-                name: 'wantHeaders',
-                default: false,
-                message: 'Do you want headers?',
-            },
-            {
-                type: 'confirm',
-                name: 'wantActionsAndReducer',
-                default: true,
-                message: 'Do you want an actions/constants/selectors/reducer tuple for this container?',
-            },
-            {
-                type: 'confirm',
-                name: 'wantSaga',
-                default: true,
-                message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
-            },
-            {
-                type: 'confirm',
-                name: 'wantMessages',
-                default: true,
-                message: 'Do you want i18n messages? (i.e. will this component use text)',
-            },
-            {
-                type: 'confirm',
-                name: 'wantLoadable',
-                default: true,
-                message: 'Do you want to load resources asynchronously?',
-            },
+            componentType(),
+            componentName(config),
+            deny('wantHeaders', 'Do you want headers?'),
+            confirm(
+                'wantActionsAndReducer', 
+                'Do you want an actions/constants/selectors/reducer tuple for this container?',
+            ),
+            confirm(
+                'wantSaga',
+                'Do you want sagas for asynchronous flows? (e.g. fetching data)',
+            ),
+            confirm(
+                'wantMessages',
+                'Do you want i18n messages? (i.e. will this component use text)',
+            ),
+            confirm(
+                'wantLoadable',
+                'Do you want to load resources asynchronously?',
+            ),
         ],
         actions: (data) => {
-            const add = (templateFile, ...paths) => {
-                return {
-                    type: "add",
-                    templateFile: './container/' + templateFile,
-                    path: directories(config, 'container', '{{ properCase name }}', ...paths),
-                    abortOnFail: true,
-                }
-            };
+            const add = mkAdd(config, 'container');
 
             function* actionsIter() {
                 const containerTemplate = data.type === 'Stateless Function'
