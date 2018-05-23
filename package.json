@@ -30,7 +30,11 @@
     "configs:jest": "node ./internals/scripts/configs.js jest",
     "configs:lint": "node ./internals/scripts/configs.js lint",
     "configs:babel:dev": "node ./internals/scripts/configs.js babel:dev",
-    "configs:babel:prod": "node ./internals/scripts/configs.js babel:prod"
+    "configs:babel:prod": "node ./internals/scripts/configs.js babel:prod",
+    "configs:tslint": "node ./internals/scripts/configs.js tslint",
+    "configs:ts:dev": "node ./internals/scripts/configs.js ts:dev",
+    "configs:ts:test": "node ./internals/scripts/configs.js ts:test",
+    "configs:ts:prod": "node ./internals/scripts/configs.js ts:prod"
   },
   "lint-staged": {
     "*.{ts,tsx}": "lint:tslint",

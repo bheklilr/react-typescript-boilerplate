@@ -2,6 +2,8 @@ var minimist = require('minimist');
 var printConfigForJest = require('./helpers/printJestConfig');
 var printConfigForLint = require('./helpers/printLintConfig');
 var printConfigForBabel = require('./helpers/printBabelConfig');
+var printConfigForTs = require('./helpers/printTsConfig');
+var printConfigForTsLint = require('./helpers/printTslintConfig');
 
 function parseArgs() {
     var args = minimist(process.argv.slice(2));
@@ -13,23 +15,24 @@ function parseArgs() {
     what.forEach((tool) => printConfigFor(tool));
 }
 
+const tools = {
+    "jest":         () => printConfigForJest(),
+    "lint":         () => printConfigForLint(),
+    "babel:dev":    () => printConfigForBabel("dev"),
+    "babel:prod":   () => printConfigForBabel("prod"),
+    "tslint":       () => printConfigForTsLint(),
+    "ts:dev":       () => printConfigForTs("dev"),
+    "ts:test":      () => printConfigForTs("test"),
+    "ts:prod":      () => printConfigForTs("prod"),
+}
+
 function printConfigFor(tool) {
-    switch (tool) {
-        case "jest":
-            printConfigForJest();
-            break;
-        case "lint":
-            printConfigForLint();
-            break;
-        case "babel:dev":
-            printConfigForBabel('dev');
-            break;
-        case "babel:prod":
-            printConfigForBabel('prod');
-            break;
-        default:
-            process.stdout.write("Unknown tool " + tool + "\n");
-            process.exit(1);
+    const printer = tools[tool];
+    if (printer !== null) {
+        printer();
+    } else {
+        process.stdout.write("Unknown tool " + tool + "\n");
+        process.exit(1);
     }
 }
 
