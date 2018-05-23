@@ -2,7 +2,6 @@
  * Exports the generators for plop
  */
 
-const fs = require('fs');
 const path = require('path');
 
 const DEFAULT_PLOP_CONFIG = {
