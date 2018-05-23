@@ -14,12 +14,13 @@ const FooterWrapper = styled.footer`
     border-top: 1px solid #666;
 `;
 
-type FooterProps = {}
+interface FooterProps {
+}
 
 function Footer(props: FooterProps) {
     return (
         <FooterWrapper />
-    )
-};
+    );
+}
 
 export default Footer;

@@ -6,7 +6,7 @@ module.exports = (config) => {
         prompts: [
             componentType(),
             componentName(config),
-            deny('wantHeaders', 'Do you want headers?'),
+            // deny('wantHeaders', 'Do you want headers?'),
             confirm(
                 'wantActionsAndReducer', 
                 'Do you want an actions/constants/selectors/reducer tuple for this container?',

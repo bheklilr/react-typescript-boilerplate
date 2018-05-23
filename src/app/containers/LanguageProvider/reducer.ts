@@ -5,7 +5,7 @@ import {
 } from './constants';
 import {
     DEFAULT_LOCALE,
-} from 'app/components/App/constants';
+} from '../../components/App/constants';
 
 const initialState = fromJS({
     locale: DEFAULT_LOCALE,

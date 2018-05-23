@@ -8,9 +8,10 @@ import { default as styled } from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-type HomePageProps = {};
-type HomePageState = {};
-
+interface HomePageProps {
+}
+interface HomePageState {
+}
 
 class HomePage extends React.PureComponent<HomePageProps, HomePageState> {
   public render() {

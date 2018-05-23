@@ -7,9 +7,9 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-    loading: false,
-    error: false,
     currentUser: false,
+    error: false,
+    loading: false,
     userData: {
         repositories: false,
     },

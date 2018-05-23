@@ -47,6 +47,7 @@ const render = (messages: object) => {
     );
 };
 
+// tslint:disable no-string-literal
 if (module['hot']) {
     module['hot'].accept(['./i18n', 'app/containers/App'], () => {
         ReactDOM.unmountComponentAtNode(MOUNT_NODE);
@@ -71,3 +72,4 @@ if (!window['Intl']) {
 if (process.env.NODE_ENV === 'production') {
     OfflinePluginRuntime.install();
 }
+// tslint:enable

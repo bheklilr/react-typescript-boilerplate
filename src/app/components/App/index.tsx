@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
-import Header from 'app/components/Header';
-import Footer from 'app/components/Footer';
-import HomePage from 'app/components/HomePage';
+import Header from '../Header';
+import Footer from '../Footer';
+import HomePage from '../HomePage';
 
 const AppWrapper = styled.default.div`
         max-width: calc(768px + 16px * 2);

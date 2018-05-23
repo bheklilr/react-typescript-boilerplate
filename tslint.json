@@ -1,5 +1,12 @@
 {
     "extends": ["tslint:latest", "tslint-react"],
     "rules": {
+        "interface-name": false,
+        "quotemark": false,
+        "ordered-imports": false,
+        "no-empty-interface": false,
+        "no-submodule-imports": false,
+        "no-implicit-dependencies": false,
+        "object-literal-sort-keys": false
     }
 }
