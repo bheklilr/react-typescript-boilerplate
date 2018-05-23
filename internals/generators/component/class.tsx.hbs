@@ -10,11 +10,13 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 {{/if}}
 
-type {{ properCase name }}Props = {};
-type {{ properCase name }}State = {};
+interface {{ properCase name }}Props {
+}
 
+interface {{ properCase name }}State {
+}
 
-class {{ properCase name }} extends {{{ type }}}<{{ properCase name }}Props, {{ properCase name }}State> {
+export class {{ properCase name }} extends {{{ type }}}<{{ properCase name }}Props, {{ properCase name }}State> {
   public render() {
     return (
       <div>
