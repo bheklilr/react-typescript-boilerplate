@@ -1,4 +1,4 @@
-const { mkAdd, componentType, componentName, confirm, deny } = require('../utils/prompts');
+const { mkAdd, componentType, componentName, confirm } = require('../utils/prompts');
 
 module.exports = (config) => {
     return {
