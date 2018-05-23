@@ -1,0 +1,24 @@
+/**
+ * {{ properCase name }} Component
+ */
+import * as React from 'react';
+import { default as styled } from 'styled-components';
+
+{{#if wantMessages}}
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
+{{/if}}
+
+type {{ properCase name }}Props = {}
+
+function {{ properCase name }}(props: {{ properCase name }}Props) {
+    return (
+        <div>
+        {{#if wantMessages}}
+            <FormattedMessage {...messages.header} />
+        {{/if}}
+        </div>
+    )
+};
+
+export default {{ properCase name }};

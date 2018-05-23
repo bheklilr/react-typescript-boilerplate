@@ -5,8 +5,10 @@ const OfflinePlugin = require('offline-plugin');
 
 module.exports = require('./webpack.base.babel')({
     entry: [
-        path.join(process.cwd(), 'src/app/app.js'),
+        path.join(process.cwd(), 'src/app/index.tsx'),
     ],
+
+    mode: 'production',
 
     output: {
         filename: '[name].[chunkhash].js',
@@ -17,7 +19,7 @@ module.exports = require('./webpack.base.babel')({
         new webpack.optimize.ModuleConcatenationPlugin(),
         
         new HtmlWebpackPlugin({
-            template: 'src/app/index/html',
+            template: 'src/app/index.html',
             minify: {
                 removeComments: true,
                 collapseWhitespace: true,

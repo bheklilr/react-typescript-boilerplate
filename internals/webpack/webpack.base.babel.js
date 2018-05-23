@@ -14,6 +14,7 @@ process.noDeprecation = true;
 
 module.exports = (options) => ({
     entry: options.entry,
+    mode: options.mode,
     
     devtool: options.devtool,
     target: 'web', // Make web variables accessible to webpack, e.g. window
@@ -25,7 +26,7 @@ module.exports = (options) => ({
     }, options.output),
 
     resolve: {
-        modules: ["src", "node_modules"],
+        modules: [path.resolve(process.cwd(), 'src'), "node_modules"],
         extensions: [
             ".js",
             ".jsx",
@@ -36,7 +37,7 @@ module.exports = (options) => ({
             "browser",
             "jsnext:main",
             "main",
-        ]
+        ],
     },
 
     plugins: options.plugins.concat([
