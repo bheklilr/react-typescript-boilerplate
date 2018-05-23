@@ -26,20 +26,12 @@ const CONFIG = getConfig();
 
 const generators = {
     component: require('./component/index.js'),
-    // container: require('./container/index.js'),
+    container: require('./container/index.js'),
     // route: require('./route/index.js'),
     // language: require('./language/index.js'),
 }
 
 const helpers = {
-    // directory: (comp) => {
-    //     try {
-    //         fs.accessSync(path.join(__dirname, `../../${CONFIG.containersDirectory}/${comp}`), fs.F_OK);
-    //         return `containers/${comp}`;
-    //     } catch (e) {
-    //         return `components/${comp}`;
-    //     }
-    // },
     curly: (object, open) => {
         return (open ? '{' : '}')
     },

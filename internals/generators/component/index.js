@@ -34,44 +34,29 @@ module.exports = (config) => {
             }
         ],
         actions: (data) => {
-            let componentTemplate;
-
-            switch (data.type) {
-                case 'Stateless Function': {
-                    componentTemplate = './component/stateless.tsx.hbs';
-                    break;
+            const add = (templateFile, ...paths) => {
+                return {
+                    type: "add",
+                    templateFile: './component/' + templateFile,
+                    path: directories(config, 'component', '{{ properCase name }}', ...paths),
+                    abortOnFail: true,
                 }
-                default: {
-                    componentTemplate = './component/class.tsx.hbs';
+            };
+
+            function* actionsIter() {
+                const componentTemplate = data.type === 'Stateless Function'
+                    ? 'stateless.tsx.hbs'
+                    : 'class.tsx.hbs';
+                yield add(componentTemplate, 'index.tsx');
+                yield add('index.test.tsx.hbs', 'tests', 'index.test.tsx');
+                
+                // If they want a i18n messages file
+                if (data.wantMessages) {
+                    yield add('messages.ts.hbs', 'messages.ts');
                 }
             }
 
-            const actions = [
-                {
-                    type: 'add',
-                    path: directories(config, 'component', '{{properCase name}}/index.tsx'),
-                    templateFile: componentTemplate,
-                    abortOnFail: true,
-                },
-                {
-                    type: 'add',
-                    path: directories(config, 'component', '{{properCase name}}/tests/index.test.tsx'),
-                    templateFile: './component/test.tsx.hbs',
-                    abortOnFail: true,
-                },
-            ];
-
-            // If they want a i18n messages file
-            if (data.wantMessages) {
-                actions.push({
-                type: 'add',
-                path: directories(config, 'component', '{{properCase name}}/messages.ts'),
-                templateFile: './component/messages.ts.hbs',
-                abortOnFail: true,
-                });
-            }
-        
-            return actions;
+            return Array.from(actionsIter());
         }
     }
 };

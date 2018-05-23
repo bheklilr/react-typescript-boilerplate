@@ -1,9 +1,11 @@
-module.exports = (config, type, path) => {
+const path = require('path');
+
+module.exports = (config, type, ...pathParts) => {
     if (type === 'component') {
-        return `${process.cwd()}/${config.componentsDirectory}/${path}`;
+        return path.join(process.cwd(), config.componentsDirectory, ...pathParts);
     } else if (type === 'container') {
-        return `${process.cwd()}/${config.containersDirectory}/${path}`;
+        return path.join(process.cwd(), config.containersDirectory, ...pathParts);
     } else {
-        return `${process.cwd()}/${type}/${path}`;
+        return path.join(process.cwd(), type, ...pathParts);
     }
 }
